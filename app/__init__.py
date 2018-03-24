@@ -1,5 +1,7 @@
 from flask import Flask
 from .views import reminders
+from .extensions import db
+from .models import Reminder
 
 
 def create_app(config):
@@ -18,8 +20,14 @@ def register_blueprints(app):
 
 
 def register_extensions(app):
-    return
+    db.init_app(app)
 
 
 def register_shell(app):
-    return
+    def shell_context():
+        return {
+            'db': db,
+            'Reminder': Reminder
+        }
+
+    app.shell_context_processor(shell_context)
