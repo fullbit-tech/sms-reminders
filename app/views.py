@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template, flash
+from .models import Reminder
 
 
 reminders = Blueprint('reminders', __name__, template_folder="templates")
 
 
 @reminders.route('/')
-def hello():
-    flash("Hello, world!", 'success')
-    return render_template('index.html')
+def index():
+    reminders = Reminder.query.all()
+    return render_template('index.html', reminders=reminders)

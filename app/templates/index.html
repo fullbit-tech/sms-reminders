@@ -1,12 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
+<div class="container main">
   <div class="row">
     <div class="col-md-4">
       This is where the form goes
     </div>
     <div class="col-md-8">
-      This is where the table goes
+      <table class="table">
+        <thead>
+          <th scope="col">ID</th>
+          <th scope="col">Status</th>
+          <th scope="col">Message</th>
+          <th scope="col">Send On</th>
+          <th scope="col">Sent On</th>
+          <th scope="col">Delete</th>
+        </thead>
+        <tbody>
+          {% if reminders %}
+            {% for reminder in reminders %}
+              <tr>
+                <td>{{ reminder.id }}</td>
+                <td>{{ reminder.status }}</td>
+                <td>{{ reminder.message }}</td>
+                <td>{{ reminder.send_on }}</td>
+                <td>{% if reminder.sent_on %}{{ reminder.sent_on }}{% else %}N/A{% endif %}</td>
+                <td><a href="#">delete</a></td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr><td class="text-center" colspan="6">No Reminders Added</td></tr>
+          {% endif %}
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

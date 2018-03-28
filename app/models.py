@@ -6,3 +6,7 @@ class Reminder(db.Model):
     message = db.Column(db.String(160), nullable=False)
     send_on = db.Column(db.DateTime, nullable=False)
     sent_on = db.Column(db.DateTime)
+
+    @property
+    def status(self):
+        return 'delivered' if self.sent_on else 'pending'
