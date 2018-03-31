@@ -3,7 +3,33 @@
 <div class="container main">
   <div class="row">
     <div class="col-md-4">
-      This is where the form goes
+      <form method="post">
+        <div>
+          {{ form.message.label }}
+          {{ form.message }}
+          {% if form.message.errors %}
+            <ul class="errors">
+              {% for error in form.message.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        <div>
+          {{ form.send_on.label }}
+          {{ form.send_on }}
+          {% if form.send_on.errors %}
+            <ul class="errors">
+              {% for error in form.send_on.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        <div>
+          {{ form.submit }}
+        </div>
+      </form>
     </div>
     <div class="col-md-8">
       <table class="table">
