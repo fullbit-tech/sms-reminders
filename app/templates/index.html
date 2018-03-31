@@ -17,7 +17,7 @@
         </div>
         <div>
           {{ form.send_on.label }}
-          {{ form.send_on }}
+          {{ form.send_on(class_='datetimepicker') }}
           {% if form.send_on.errors %}
             <ul class="errors">
               {% for error in form.send_on.errors %}
