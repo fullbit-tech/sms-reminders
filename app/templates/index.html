@@ -1,35 +1,10 @@
 {% extends "base.html" %}
+{% from 'form_macros.html' import render_form %}
 {% block content %}
 <div class="container main">
   <div class="row">
     <div class="col-md-4">
-      <form method="post">
-        <div>
-          {{ form.message.label }}
-          {{ form.message }}
-          {% if form.message.errors %}
-            <ul class="errors">
-              {% for error in form.message.errors %}
-                <li>{{ error }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </div>
-        <div>
-          {{ form.send_on.label }}
-          {{ form.send_on(class_='datetimepicker') }}
-          {% if form.send_on.errors %}
-            <ul class="errors">
-              {% for error in form.send_on.errors %}
-                <li>{{ error }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </div>
-        <div>
-          {{ form.submit }}
-        </div>
-      </form>
+      {{ render_form(form) }}
     </div>
     <div class="col-md-8">
       <table class="table">

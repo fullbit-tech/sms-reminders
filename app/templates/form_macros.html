@@ -1,0 +1,42 @@
+{% macro render_form(form, method='POST', action='') %}
+<form method="{{ method }}" action="{{ action }}">
+  {% for field in form %}
+      <div class="form-group">
+        {% if field.type == 'SubmitField' %}
+          {{ render_submit_field(field) }}
+        {% elif field.type == 'DateTimeField' %}
+          {{ render_datetime_field(field) }}
+        {% elif field.type == 'StringField' %}
+          {{ render_string_field(field) }}
+        {% endif %}
+
+        {% for error in field.errors %}
+          <div class="invalid-feedback">{{ error }}</div>
+        {% endfor %}
+      </div>
+  {% endfor %}
+</form>
+{% endmacro %}
+
+{% macro render_string_field(field) %}
+  {% set class_ = 'form-control' %}
+  {% if field.errors %}
+    {% set class_ = class_ + ' is-invalid' %}
+  {% endif %}
+  <label>{{ field.label }}</label>
+  {{ field(class_=class_) }}
+{% endmacro %}
+
+{% macro render_submit_field(field) %}
+  {% set class_ = 'form-control btn btn-primary' %}
+  {{ field(class_=class_) }}
+{% endmacro %}
+
+{% macro render_datetime_field(field) %}
+  {% set class_ = 'form-control datetimepicker' %}
+  {% if field.errors %}
+    {% set class_ = class_ + ' is-invalid' %}
+  {% endif %}
+  <label>{{ field.label }}</label>
+  {{ field(class_=class_) }}
+{% endmacro %}
