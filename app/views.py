@@ -22,3 +22,12 @@ def index():
 
     reminders = Reminder.query.all()
     return render_template('index.html', reminders=reminders, form=form)
+
+
+@reminders.route('/reminder/<reminder_id>/delete', methods=['GET'])
+def delete_reminder(reminder_id):
+    reminder = Reminder.query.filter_by(id=reminder_id).first_or_404()
+    db.session.delete(reminder)
+    db.session.commit()
+    flash('Reminder deleted!', 'success')
+    return redirect(url_for('reminders.index'))

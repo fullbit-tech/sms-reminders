@@ -25,7 +25,7 @@
                 <td>{{ reminder.message }}</td>
                 <td>{{ reminder.send_on }}</td>
                 <td>{% if reminder.sent_on %}{{ reminder.sent_on }}{% else %}N/A{% endif %}</td>
-                <td><a href="#">delete</a></td>
+                <td class="text-center"><a href="{{ url_for('.delete_reminder', reminder_id=reminder.id) }}"><i class="fas fa-trash"></i></a></td>
               </tr>
             {% endfor %}
           {% else %}
