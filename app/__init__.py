@@ -1,7 +1,7 @@
 from flask import Flask
 from .views import reminders
 from .extensions import db
-from .models import Reminder
+from .models import Reminder, User
 
 
 def create_app(config):
@@ -27,7 +27,8 @@ def register_shell(app):
     def shell_context():
         return {
             'db': db,
-            'Reminder': Reminder
+            'Reminder': Reminder,
+            'User': User,
         }
 
     app.shell_context_processor(shell_context)
