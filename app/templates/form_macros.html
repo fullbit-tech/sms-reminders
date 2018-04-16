@@ -6,7 +6,7 @@
           {{ render_submit_field(field) }}
         {% elif field.type == 'DateTimeField' %}
           {{ render_datetime_field(field) }}
-        {% elif field.type == 'StringField' %}
+        {% elif field.type == 'StringField' or field.type == 'PasswordField' %}
           {{ render_string_field(field) }}
         {% endif %}
 
